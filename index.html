@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>How Much Did That Meeting Cost?</title>
+		<meta name="description" content="we made this in ten minutes... seriously. Don't judge us." />
+		<meta name="keywords" content="meetings, clients, advertising, comical, money, time" />
+		<meta name="author" content="Mike and Alyssa!"/>
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://howmuchdidthatmeetingcost.com" />
+		<meta property="og:title" content="How Much Did That Meeting Cost?" /> 
+		<meta property="og:description" content="we made this in ten minutes... seriously. Don't judge us." />
+		<meta property="og:image" content="http://i67.tinypic.com/2hi4akh.jpg" />
+
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header class="header">
+				<h1>HOW MUCH MONEY DID THAT MEETING COST?</h1>	
+			</header>
+			
+			<section>
+				<form id="theForm" class="simform" autocomplete="off">
+					<div class="simform-inner">
+						<ol class="questions">
+							<li>
+								<span><label for="q1">How many Creatives?</label></span>
+								<input id="q1" name="q1" type="number"/>
+							</li>
+							<li>
+								<span><label for="q2">How many Producers?</label></span>
+								<input id="q2" name="q2" type="number"/>
+							</li>
+							<li>
+								<span><label for="q3">How many Account People?</label></span>
+								<input id="q3" name="q3" type="number"/>
+							</li>
+							<li>
+								<span><label for="q4">How many Strategists</label></span>
+								<input id="q4" name="q4" type="number"/>
+							</li>
+							<li>
+								<span><label for="q5">How many Project Managers?</label></span>
+								<input id="q5" name="q5" type="number"/>
+							</li>
+							<li>
+								<span><label for="q6">How many Media Planners?</label></span>
+								<input id="q6" name="q6" type="number"/>
+							</li>
+							<li>
+								<span><label for="q7">How many "Tech" People?</label></span>
+								<input id="q7" name="q7" type="number"/>
+							</li>
+							<li>
+								<span><label for="q8">How many hours did it take?</label><h6>(half an hour = .5)</h6></span>
+								<input id="q8" name="q8" type="number"/>
+							</li>
+						</ol><!-- /questions -->
+						<button class="submit" type="submit">Send answers</button>
+						<div class="controls">
+							<button class="next"></button>
+							<div class="progress"></div>
+							<span class="number">
+								<span class="number-current"></span>
+								<span class="number-total"></span>
+							</span>
+							<span class="error-message"></span>
+						</div><!-- / controls -->
+					</div><!-- /simform-inner -->
+					<span class="final-message">
+					<a href="#">helo</a>
+					</span>
+				</form><!-- /simform -->			
+			</section>
+			<section class="related">
+				<h6>Disclaimer: Don't quote us on these costs, but they're calculated using career average salaries from <a href="http://www.glassdoor.com" target="_blank">Glassdoor</a> for the North American advertising industry.</h6>
+				<h6>Made by <a href="http://www.mikerozycki.com/" target="_blank">Mike</a> &amp; <a href="http://alyssams.ghost.io/" target="_blank">Alyssa</a>. With no meetings.</h6>
+			</section>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/stepsForm.js"></script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-74505671-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+		<script>
+			var theForm = document.getElementById( 'theForm' );
+
+			new stepsForm( theForm, {
+				onSubmit : function( form ) {
+					// hide form
+					classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+					var creative = document.getElementById("q1").value;
+					var producer = document.getElementById("q2").value;
+					var account = document.getElementById("q3").value;
+					var strategy = document.getElementById("q4").value;
+					var pm= document.getElementById("q5").value;
+					var media_planner = document.getElementById("q6").value;
+					var tech_ppl = document.getElementById("q7").value;
+					var time= document.getElementById("q8").value;
+					//the #$ is based on the following: (Average Glass Door Salary*3.5)/1600
+					//the 3.5 is there to generate profit.
+					//the 1600 are the number of billable hours in a year. Ish. Just go with it. It's prom night. 
+					var totalCost = ((230.56*creative)+(156.64*producer)+(210.08*account)+(242.63*strategy)+(167.42*pm)+(261.81*media_planner) +(175*tech_ppl))*time;
+					var messageEl = theForm.querySelector( '.final-message' );
+					messageEl.innerHTML = '<span> $' +totalCost.toFixed(2)+'</span>';
+					messageEl.appendChild(document.createElement('br'));
+					messageEl.innerHTML+= 'Maybe next time, try a stand up.';
+					messageEl.appendChild(document.createElement('br'));
+					messageEl.innerHTML+= '<a href="\">restart</a>';
+					classie.addClass( messageEl, 'show' );
+				}
+			} );
+		</script>
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d6156d42626f2b"></script>
+
+
+
+	</body>
+</html>
